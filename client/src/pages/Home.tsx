@@ -42,12 +42,9 @@ export default function Home() {
             <div className="flex gap-4">
               <a href={getLoginUrl()}>
                 <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700">
-                  Começar Diagnóstico <ArrowRight className="ml-2 w-4 h-4" />
+                  Começar Diagnóstico Astrológico <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </a>
-              <Button size="lg" variant="outline">
-                Saiba Mais
-              </Button>
             </div>
           </div>
           <div className="relative">

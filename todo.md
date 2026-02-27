@@ -21,11 +21,12 @@
 - [ ] Gerar ações 7d e 90d baseadas em paradigmas
 
 ## Fase 4: Pagamentos, LLM e Integrações
-- [x] Integrar Mercado Pago/Stripe para Pix e Cartão
-- [ ] Implementar fluxo de checkout e confirmação de pagamento
+- [x] Integrar Pix de R$ 20 por diagnóstico
+- [x] Simplificar formulário para dados básicos (nascimento, local, horário de verão)
+- [x] Implementar análise astrológica para perfil de personalidade
+- [x] Criar fluxo de preview + pagamento + relatório completo
 - [x] Integrar LLM para enriquecer relatórios com insights
 - [x] Configurar envio de emails com alertas de prazos
-- [ ] Implementar upload e armazenamento seguro de documentos
 
 ## Fase 5: Testes e Refinamentos
 - [ ] Testes unitários para motor de análise

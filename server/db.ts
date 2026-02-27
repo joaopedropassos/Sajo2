@@ -103,7 +103,9 @@ export async function createDiagnostic(userId: number, title: string, descriptio
     status: "draft",
   });
 
-  return result;
+  // Retornar o ID do diagnóstico criado
+  const insertedId = (result as any).insertId || (result as any)[0]?.insertId;
+  return insertedId || 0;
 }
 
 export async function updateDiagnosticData(diagnosticId: number, data: Record<string, unknown>) {

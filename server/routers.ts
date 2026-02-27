@@ -1,4 +1,5 @@
 import { COOKIE_NAME } from "@shared/const";
+import { generateAstrologyProfile, generateAstrologyExecutiveSummary } from "./astrology";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
@@ -25,10 +26,14 @@ export const appRouter = router({
       .input(z.object({
         title: z.string(),
         description: z.string().optional(),
+        birthDate: z.date().optional(),
+        birthTime: z.string().optional(),
+        birthCity: z.string().optional(),
+        isDaylightSaving: z.boolean().optional(),
       }))
       .mutation(async ({ ctx, input }) => {
-        await db.createDiagnostic(ctx.user.id, input.title, input.description);
-        return { success: true };
+        const id = await db.createDiagnostic(ctx.user.id, input.title, input.description);
+        return { success: true, id };
       }),
 
     list: protectedProcedure

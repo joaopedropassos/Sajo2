@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import DiagnosticForm from "./pages/DiagnosticForm";
 import ReportView from "./pages/ReportView";
+import BirthDataForm from "./pages/BirthDataForm";
+import AstrologyPreview from "./pages/AstrologyPreview";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -16,6 +18,8 @@ function Router() {
       <Route path={"/ "} component={Home} />
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/diagnostic/new"} component={DiagnosticForm} />
+      <Route path={"/birth-data"} component={BirthDataForm} />
+      <Route path={"/diagnostic/:id/preview"} component={AstrologyPreview} />
       <Route path={"/reports/:id"} component={ReportView} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
