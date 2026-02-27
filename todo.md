@@ -34,3 +34,12 @@
 - [ ] Refinamentos visuais e UX
 - [ ] Validação de segurança e conformidade
 - [ ] Documentação e entrega final
+
+
+## SEO e Otimizações
+- [x] Adicionar título SEO otimizado (30-60 caracteres)
+- [x] Adicionar meta description (50-160 caracteres)
+- [x] Adicionar palavras-chave no conteúdo
+- [x] Otimizar estrutura HTML com tags semânticas
+- [x] Adicionar schema JSON-LD para SEO estruturado
+- [x] Melhorar h1 com palavras-chave astrológicas

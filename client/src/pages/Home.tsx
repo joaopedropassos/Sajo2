@@ -34,10 +34,10 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-              Diagnósticos Personalizados para sua Vida
+              Diagnósticos Astrológicos Personalizados para sua Vida
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-400 mb-8">
-              Análise profunda e inteligente de sua situação financeira, jurídica, saúde e relacionamentos. Receba recomendações acionáveis baseadas em paradigmas comprovados.
+              Análise profunda e inteligente de sua situação financeira, jurídica, saúde e relacionamentos. Receba relatórios personalizados com recomendações acionáveis baseadas em paradigmas comprovados. Plano de ação para 7 e 90 dias com insights de IA.
             </p>
             <div className="flex gap-4">
               <a href={getLoginUrl()}>
