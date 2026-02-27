@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, diagnostics, reports, payments, documents, emailAlerts } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,201 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+/**
+ * Diagnósticos
+ */
+export async function createDiagnostic(userId: number, title: string, description?: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const result = await db.insert(diagnostics).values({
+    userId,
+    title,
+    description,
+    status: "draft",
+  });
+
+  return result;
+}
+
+export async function updateDiagnosticData(diagnosticId: number, data: Record<string, unknown>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.update(diagnostics)
+    .set({
+      financialData: data.financialData,
+      healthData: data.healthData,
+      relationshipData: data.relationshipData,
+      lifeData: data.lifeData,
+      juridicalData: data.juridicalData,
+      identifiedParadigms: data.identifiedParadigms,
+      status: "completed",
+    })
+    .where(eq(diagnostics.id, diagnosticId));
+}
+
+export async function getDiagnosticsByUser(userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.select().from(diagnostics)
+    .where(eq(diagnostics.userId, userId))
+    .orderBy(diagnostics.createdAt);
+}
+
+export async function getDiagnosticById(diagnosticId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const result = await db.select().from(diagnostics)
+    .where(eq(diagnostics.id, diagnosticId))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : undefined;
+}
+
+/**
+ * Relatórios
+ */
+export async function createReport(diagnosticId: number, userId: number, reportData: Record<string, unknown>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.insert(reports).values({
+    diagnosticId,
+    userId,
+    executiveSummary: reportData.executiveSummary as string,
+    technicalDiagnosis: reportData.technicalDiagnosis as string,
+    financialScenarios: reportData.financialScenarios as string,
+    juridicalScenarios: reportData.juridicalScenarios as string,
+    calendarTable: reportData.calendarTable,
+    actions7d: reportData.actions7d,
+    actions90d: reportData.actions90d,
+    avoidList: reportData.avoidList,
+    evidenceMap: reportData.evidenceMap,
+    auditLogHints: reportData.auditLogHints,
+    llmInsights: reportData.llmInsights as string,
+  });
+}
+
+export async function getReportsByUser(userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.select().from(reports)
+    .where(eq(reports.userId, userId))
+    .orderBy(reports.createdAt);
+}
+
+export async function getReportById(reportId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const result = await db.select().from(reports)
+    .where(eq(reports.id, reportId))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : undefined;
+}
+
+/**
+ * Pagamentos
+ */
+export async function createPayment(diagnosticId: number, userId: number, amount: string, paymentMethod: "pix" | "credit_card") {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.insert(payments).values({
+    diagnosticId,
+    userId,
+    amount,
+    currency: "BRL",
+    paymentMethod,
+    status: "pending",
+  });
+}
+
+export async function updatePaymentStatus(paymentId: number, status: "completed" | "failed" | "refunded", externalPaymentId?: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const updateData: Record<string, unknown> = { status };
+  if (externalPaymentId) updateData.externalPaymentId = externalPaymentId;
+
+  return await db.update(payments)
+    .set(updateData)
+    .where(eq(payments.id, paymentId));
+}
+
+export async function getPaymentsByUser(userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.select().from(payments)
+    .where(eq(payments.userId, userId))
+    .orderBy(payments.createdAt);
+}
+
+export async function getPaymentByDiagnostic(diagnosticId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const result = await db.select().from(payments)
+    .where(eq(payments.diagnosticId, diagnosticId))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : undefined;
+}
+
+/**
+ * Documentos
+ */
+export async function createDocument(diagnosticId: number, userId: number, filename: string, fileType: string, s3Key: string, s3Url: string, documentType?: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.insert(documents).values({
+    diagnosticId,
+    userId,
+    filename,
+    fileType,
+    s3Key,
+    s3Url,
+    documentType,
+  });
+}
+
+export async function getDocumentsByDiagnostic(diagnosticId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.select().from(documents)
+    .where(eq(documents.diagnosticId, diagnosticId))
+    .orderBy(documents.createdAt);
+}
+
+/**
+ * Email Alerts
+ */
+export async function createEmailAlert(userId: number, reportId: number, alertType: string, alertTitle: string, alertContent: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.insert(emailAlerts).values({
+    userId,
+    reportId,
+    alertType,
+    alertTitle,
+    alertContent,
+  });
+}
+
+export async function getEmailAlertsByUser(userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  return await db.select().from(emailAlerts)
+    .where(eq(emailAlerts.userId, userId))
+    .orderBy(emailAlerts.sentAt);
+}
