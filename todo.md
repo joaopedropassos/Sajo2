@@ -36,6 +36,13 @@
 - [ ] Documentação e entrega final
 
 
+## CI/CD com GitHub Actions
+- [x] Criar workflow de testes automáticos (vitest)
+- [x] Implementar validação de TypeScript
+- [x] Adicionar linting (ESLint/Prettier)
+- [x] Configurar build automático
+- [ ] Testar fluxo completo de CI/CD
+
 ## SEO e Otimizações
 - [x] Adicionar título SEO otimizado (30-60 caracteres)
 - [x] Adicionar meta description (50-160 caracteres)
