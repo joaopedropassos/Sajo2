@@ -92,7 +92,7 @@ Otimize a performance do formulário:
 - 📝 **Prompt Template:** [PROMPT_TEMPLATE.md](./PROMPT_TEMPLATE.md)
 - 📋 **Tarefas do Projeto:** [todo.md](./todo.md)
 - 🌐 **Site ao Vivo:** https://fusionsajo-tv5nf8xq.manus.space
-- 💾 **Repositório:** https://github.com/joaopedropassostocantins/Sajo2
+- 💾 **Repositório:** https://github.com/joaopedropassos/Sajo2
 
 ---
 

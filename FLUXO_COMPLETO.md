@@ -123,7 +123,7 @@ git push origin main
 
 ```
 ┌──────────────────────────────────────────┐
-│      GitHub (joaopedropassostocantins)   │
+│      GitHub (joaopedropassos)   │
 │              ↓ (webhook)                 │
 │      Manus Platform Detects Push         │
 │              ↓                            │

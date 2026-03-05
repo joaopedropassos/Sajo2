@@ -147,7 +147,7 @@ pnpm dev
 ```bash
 # Solução: Verificar configuração do Git
 git remote -v
-# Deve mostrar: origin https://github.com/joaopedropassostocantins/Sajo2.git
+# Deve mostrar: origin https://github.com/joaopedropassos/Sajo2.git
 ```
 
 **Problema:** Mudanças não aparecem no site
@@ -168,7 +168,7 @@ pnpm check
 
 Para dúvidas sobre o workflow ou problemas, consulte:
 - **Documentação do Manus**: https://help.manus.im
-- **GitHub do projeto**: https://github.com/joaopedropassostocantins/Sajo2
+- **GitHub do projeto**: https://github.com/joaopedropassos/Sajo2
 - **Logs do servidor**: Verificar no painel do Manus
 
 ---

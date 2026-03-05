@@ -147,17 +147,17 @@ gh api repos/joaopedropassos/Sajo2/commits --jq \
 #### Dados Obtidos:
 ```json
 {
-  "author": "joaopedropassostocantins",
+  "author": "joaopedropassos",
   "date": "2026-03-05T11:34:10Z",
   "message": "UI: tema coreano Obangsaek + cards modulos + animais zodíaco + scroll correto"
 }
 {
-  "author": "joaopedropassostocantins",
+  "author": "joaopedropassos",
   "date": "2026-03-04T20:34:57Z",
   "message": "Etapa 6: metricas + admin panel + funil tracking"
 }
 {
-  "author": "joaopedropassostocantins",
+  "author": "joaopedropassos",
   "date": "2026-03-04T20:31:15Z",
   "message": "Etapa 5: questionarios + llmRunner + resultado + paleta redesign"
 }
